@@ -1,17 +1,17 @@
 terraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
-      version = "6.33.0" # Terraform AWS provider version
+      source  = "hashicorp/aws"
+      version = "6.33.0"
     }
   }
 
   backend "s3" {
-    bucket  = "remote-state-dheeraj" # Replace with your unique bucket name
-    key     = "roboshop-dev-sg-rules"
+    bucket  = "remote-state-dheeraj"
+    key     = "roboshop-dev-bastion"
     region  = "us-east-1"
     encrypt = true
-    use_lockfile   = true
+    use_lockfile = true
   }
 }
 
