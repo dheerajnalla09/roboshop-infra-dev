@@ -5,7 +5,7 @@ resource "aws_instance" "mongodb" {
   instance_type = "t3.micro"
 
   subnet_id = local.database_subnet_id             # ✅ FIX
-  associate_public_ip_address = true              # ✅ ADD
+  associate_private_ip_address = true              # ✅ ADD
 
   vpc_security_group_ids = [local.mongodb_sg_id]
 
@@ -49,7 +49,7 @@ resource "aws_instance" "redis" {
   instance_type = "t3.micro"
 
   subnet_id = local.database_subnet_id
-  associate_public_ip_address = true
+  associate_private_ip_address = true
 
   vpc_security_group_ids = [local.redis_sg_id]
 
@@ -70,7 +70,7 @@ resource "terraform_data" "bootstrap_redis" {
     type     = "ssh"
     user     = "ec2-user"
     password = "DevOps321"
-    host     = aws_instance.redis.public_ip       # ✅ FIX
+    host     = aws_instance.redis.private_ip       # ✅ FIX
   }
 
   provisioner "file" {
@@ -93,7 +93,7 @@ resource "aws_instance" "mysql" {
   instance_type = "t3.micro"
 
   subnet_id = local.database_subnet_id
-  associate_public_ip_address = true
+  associate_private_ip_address = true
 
   vpc_security_group_ids = [local.mysql_sg_id]
   iam_instance_profile   = aws_iam_instance_profile.mysql.name
@@ -115,7 +115,7 @@ resource "terraform_data" "mysql" {
     type     = "ssh"
     user     = "ec2-user"
     password = "DevOps321"
-    host     = aws_instance.mysql.public_ip       # ✅ FIX
+    host     = aws_instance.mysql.private_ip       # ✅ FIX
   }
 
   provisioner "file" {
@@ -138,7 +138,7 @@ resource "aws_instance" "rabbitmq" {
   instance_type = "t3.micro"
 
   subnet_id = local.database_subnet_id
-  associate_public_ip_address = true
+  associate_private_ip_address = true
 
   vpc_security_group_ids = [local.rabbitmq_sg_id]
 
@@ -159,7 +159,7 @@ resource "terraform_data" "rabbitmq" {
     type     = "ssh"
     user     = "ec2-user"
     password = "DevOps321"
-    host     = aws_instance.rabbitmq.public_ip   # ✅ FIX
+    host     = aws_instance.rabbitmq.private_ip   # ✅ FIX
   }
 
   provisioner "file" {
