@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 set -e   # ✅ stop on error
 
 component=$1
