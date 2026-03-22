@@ -7,13 +7,9 @@ variable "environment" {
 }
 
 variable "zone_id" {
-    default = "Z0493894GT35YUX5U0H3"
+    default = "ZZ0493894GT35YUX5U0H3"
 }
 
 variable "domain_name" {
     default = "dheerajn.online"
-}
-
-variable "app_version" {
-    default = "v3"
 }
